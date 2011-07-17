@@ -7,6 +7,7 @@
 
 .item {
     background-color: #adff2f;
+    display: block;
     height: 70px;
     width: 70px;
     margin:  0 7px 7px 0
