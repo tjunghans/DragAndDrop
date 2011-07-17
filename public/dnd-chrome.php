@@ -28,11 +28,11 @@
         <script type="text/javascript" src="javascripts/EventUtil.js"></script>
     </head>
     <body>
-        <div class="source" draggable="false" id="source1">
+        <div draggable="false" id="source1">
             <div draggable="true" data-value="draggable-item-1" id="dragme1" class="item"></div>
         </div>
         <hr/>
-        <div class="target" dropzone="move s:text/html" id="target1">foo</div>
+        <div dropzone="move s:text/html" id="target1">foo</div>
 
         <script type="text/javascript">
             
@@ -78,12 +78,15 @@
                     e.preventDefault();
                 }
 
+                this.className = 'draggingover';
                 e.dataTransfer.dropEffect = effect;
 
-                var data = e.dataTransfer.getData(format);
-                console.log(data);
-
                 return false;
+            });
+
+            EventUtil.addHandler(target1, 'dragleave', function (e) {
+                console.log('dragleave');
+                this.className = '';
             });
 
             EventUtil.addHandler(target1, 'dragenter', function (e) {
@@ -95,7 +98,7 @@
                 var data = e.dataTransfer.getData(format);
     
 
-                      
+
 
                 console.log('properties begin');
                 for (var x in e.dataTransfer) {
@@ -127,11 +130,6 @@
                 return true;
             });
 
-    
-
-
         </script>
-
-        
     </body>
 </html>

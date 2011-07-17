@@ -13,12 +13,12 @@
 }
 
 
-.source, .target {
+#source1, #target1 {
     width: 100%;
     min-height: 100px;
 }
 
-.source {
+#source1 {
     border: solid 2px #fff;
     padding: 7px;
 }
@@ -28,8 +28,13 @@
     border-color: green;
 }
 
-.target {
+
+#target1 {
     border:  solid 2px darkblue;
     background-color: #add8e6;
     padding: 7px;
+}
+
+#target1.draggingover {
+    background-color: #ffa07a;
 }
