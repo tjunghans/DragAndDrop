@@ -1,0 +1,35 @@
+/* Helper classes */
+.a-read {
+    color: #32cd32;
+}
+
+/* Drag And Drop */
+
+.item {
+    background-color: #adff2f;
+    height: 70px;
+    width: 70px;
+    margin:  0 7px 7px 0
+}
+
+
+.source, .target {
+    width: 100%;
+    min-height: 100px;
+}
+
+.source {
+    border: solid 2px #fff;
+    padding: 7px;
+}
+
+.source-dragenter {
+    background-color: lightgreen;
+    border-color: green;
+}
+
+.target {
+    border:  solid 2px darkblue;
+    background-color: #add8e6;
+    padding: 7px;
+}
