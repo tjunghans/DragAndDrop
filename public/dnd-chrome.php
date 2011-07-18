@@ -3,10 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>This is an example for the &lt;base&gt; element</title>
+        <title>Chrome Drag and Drop</title>
    
-
-
         <link href="stylesheets/site.css" rel="stylesheet" type="text/css" />
 
         <style type="text/css">
@@ -32,14 +30,10 @@
             <div draggable="true" data-value="bar" id="dragme1" class="item"></div>
         </div>
         <hr/>
-        <div dropzone="move s:text/html" id="target1">foo</div>
+        <div id="target1">foo</div>
 
         <script type="text/javascript">
             
-
-            
-            
-
             // Ziel1
 
             var target1 = document.getElementById('target1');
@@ -52,9 +46,7 @@
                     e.stopPropagation();
                 }
 
-                var data = e.dataTransfer.getData(format);
-
-                this.innerHTML = data;
+                this.innerHTML = e.dataTransfer.getData(format);
                 
                 return false;
             });
@@ -83,7 +75,6 @@
 
             });
             
-
             var d1 = document.getElementById('dragme1');
 
             EventUtil.addHandler(d1, 'dragstart', function (e) {
