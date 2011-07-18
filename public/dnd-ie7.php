@@ -48,15 +48,16 @@
 
             var target1 = document.getElementById('target1');
             var effect = 'copy';
-            var format = 'text/html';
+            var format = 'Text';
 
             EventUtil.addHandler(target1, 'drop', function (e) {
 
                 if (e.stopPropagation) {
                     e.stopPropagation();
                 }
-                
-                this.innerHTML = e.dataTransfer.getData(format);
+
+                var currentTarget = EventUtil.getCurrentTarget(e);
+                currentTarget.innerHTML = e.dataTransfer.getData(format);
 
                 return false;
             });
@@ -92,7 +93,7 @@
             EventUtil.addHandler(d1, 'dragstart', function (e) {
                 var currentTarget = EventUtil.getCurrentTarget(e);
 
-                sl.log(currentTarget);
+
                 var data = currentTarget.getAttribute('data-value');
 
                 e.dataTransfer.setData(format, data);
