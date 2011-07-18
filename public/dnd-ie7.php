@@ -22,20 +22,25 @@
         </style>
         <script src="javascripts/modernizr.custom.68656.js" type="text/javascript"></script>
         <script type="text/javascript" src="javascripts/EventUtil.js"></script>
+        <script type="text/javascript" src="javascripts/SimpleLogger.js"></script>
     </head>
     <body>
+    http://www.useragentman.com/tests/dragAndDrop/02-dragObjectWithEvents.html
         <div draggable="false" id="source1">
-            <a draggable="true" data-value="bar" id="dragme1" class="item"></a>
+            <a draggable="true" href="#" data-value="bar" id="dragme1" class="item"></a>
         </div>
         <hr/>
         <div dropzone="move s:text/html" id="target1">foo</div>
 
         <script type="text/javascript">
+            var sl = new SimpleLogger();
+            sl.init();
+
             if (Modernizr.draganddrop) {
               // Support Drag and drop
-                alert('supports');
+
             } else {
-                alert('no native drag and drop support');
+            
               // Fallback to a library solution.
             }
             
@@ -73,7 +78,7 @@
             });
 
             EventUtil.addHandler(target1, 'dragenter', function (e) {
-                alert('dragenter');
+                
                 e.dataTransfer.dropEffect = effect; // set as described on http://help.dottoro.com/ljffjemc.php
                 var data = e.dataTransfer.getData(format);
 
@@ -85,8 +90,10 @@
             var d1 = document.getElementById('dragme1');
 
             EventUtil.addHandler(d1, 'dragstart', function (e) {
-                alert('dragstart');
-                var data = e.target.getAttribute('data-value');
+                var currentTarget = EventUtil.getCurrentTarget(e);
+
+                sl.log(currentTarget);
+                var data = currentTarget.getAttribute('data-value');
 
                 e.dataTransfer.setData(format, data);
                 e.dataTransfer.effectAllowed = effect;

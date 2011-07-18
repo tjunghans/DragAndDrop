@@ -24,26 +24,42 @@ function print_link($url) {
         <hr/>
         <h2>Referenzen</h2>
         <ul>
-            <li><?php print_link('http://www.quirksmode.org/blog/archives/2009/09/the_html5_drag.html');?></li>
-            <li><a class="a-read" href="http://www.webmonkey.com/2009/09/the_html5_drag_and_drop_api_is_no_panacea_for_developers/">webmonkey</a>
-            <li><a href="http://html5doctor.com/native-drag-and-drop/">html5doctor</a>
-            <li><a href="http://www.useragentman.com/blog/2010/01/10/cross-browser-html5-drag-and-drop/">useragentman</a>
-            <li><a href="http://html5demos.com/drag">html5demos</a>
-            <li><a href="http://www.quirksmode.org/blog/archives/2009/09/the_html5_drag.html">quirksmode</a>
-            <li><a href="http://ejohn.org/blog/flexible-javascript-events/">ejohn (events)</a>
-            <li><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/dnd.html#dnd">Whatwg Living Standard</a></li>
-            <li><?php print_link('https://developer.mozilla.org/En/DragDrop/Drag_Operations#Drag_Data');?></li>
-            <li><?php print_link('http://html5laboratory.com/drag-and-drop.php');?></li>
-            <li><?php print_link('http://nettutsplus.s3.amazonaws.com/64_html5dragdrop/demo/index.html');?></li>
+            <?php
+            $acc_link = array();
+            $acc_link[] = 'http://www.quirksmode.org/blog/archives/2009/09/the_html5_drag.html';
+            $acc_link[] = 'http://www.webmonkey.com/2009/09/the_html5_drag_and_drop_api_is_no_panacea_for_developers/';
+            $acc_link[] = 'http://html5doctor.com/native-drag-and-drop/';
+            $acc_link[] = 'http://www.useragentman.com/blog/2010/01/10/cross-browser-html5-drag-and-drop/';
+            $acc_link[] = 'http://html5demos.com/drag';
+            $acc_link[] = 'http://www.quirksmode.org/blog/archives/2009/09/the_html5_drag.html';
+            $acc_link[] = 'http://ejohn.org/blog/flexible-javascript-events/';
+            $acc_link[] = 'http://www.whatwg.org/specs/web-apps/current-work/multipage/dnd.html#dnd';
+            $acc_link[] = 'https://developer.mozilla.org/En/DragDrop/Drag_Operations#Drag_Data';
+            $acc_link[] = 'http://html5laboratory.com/drag-and-drop.php';
+            $acc_link[] = 'http://nettutsplus.s3.amazonaws.com/64_html5dragdrop/demo/index.html';
+            $acc_link[] = 'http://caniuse.com/';
+            foreach($acc_link as $link) {
+                echo '<li>';
+                print_link($link);
+                echo '</li>';
+            }
+            ?>
          </ul>
             <h3>Difficulties</h3>
         <ul>
-            <li><a href="http://www.webmonkey.com/2010/04/google-turns-to-html5-for-gmails-new-drag-and-drop-attachments/">webmonkey gmail</a>
-            <li><?php print_link('http://stackoverflow.com/questions/6481094/html5-drag-and-drop-ondragover-not-firing-in-chrome');?></li>
-            <li><?php print_link('http://help.dottoro.com/ljrkqflw.php');?></li>
-            <li><?php print_link('http://www.html5rocks.com/en/tutorials/casestudies/box_dnd_download.html');?></li>
-            <li><?php print_link('http://www.useragentman.com/blog/2010/01/10/cross-browser-html5-drag-and-drop/');?></li>
-            <li><?php print_link('http://gopha.wordpress.com/2010/05/16/html5-drag-drop/');?></li>
+            <?php
+            $acc_link = array();
+            $acc_link[] = 'http://www.webmonkey.com/2010/04/google-turns-to-html5-for-gmails-new-drag-and-drop-attachments/';
+            $acc_link[] = 'http://stackoverflow.com/questions/6481094/html5-drag-and-drop-ondragover-not-firing-in-chrome';
+            $acc_link[] = 'http://www.html5rocks.com/en/tutorials/casestudies/box_dnd_download.html';
+            $acc_link[] = 'http://www.useragentman.com/blog/2010/01/10/cross-browser-html5-drag-and-drop/';
+            $acc_link[] = 'http://gopha.wordpress.com/2010/05/16/html5-drag-drop/';
+            foreach($acc_link as $link) {
+                echo '<li>';
+                print_link($link);
+                echo '</li>';
+            }
+            ?>
         </ul>
         <h3>Accessibility</h3>
         <ul>
@@ -64,6 +80,7 @@ function print_link($url) {
             <?php
             $acc_link = array();
             $acc_link[] = 'https://github.com/guillaumebort/jquery-ndd#readme';
+            $acc_link[] = 'http://www.sitepen.com/blog/2008/06/10/dojo-drag-and-drop-1/';
             foreach($acc_link as $link) {
                 echo '<li>';
                 print_link($link);

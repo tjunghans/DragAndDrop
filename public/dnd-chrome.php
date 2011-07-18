@@ -71,6 +71,10 @@
                 e.dataTransfer.dropEffect = effect; // set as described on http://help.dottoro.com/ljffjemc.php
                 var data = e.dataTransfer.getData(format);
 
+                if (e.preventDefault) {
+                    e.preventDefault();
+                }
+
                 return false;
 
             });
@@ -78,6 +82,7 @@
             var d1 = document.getElementById('dragme1');
 
             EventUtil.addHandler(d1, 'dragstart', function (e) {
+
                 var data = e.target.getAttribute('data-value');
 
                 e.dataTransfer.setData(format, data);
