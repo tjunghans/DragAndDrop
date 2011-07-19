@@ -31,6 +31,9 @@ var EventUtil = {
         } else {
             return null;
         }
+    },
+    preventDefault : function (e) {
+        e.preventDefault ? e.preventDefault() : e.returnValue = false;
     }
 
 };

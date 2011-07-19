@@ -19,7 +19,7 @@ var SimpleLogger = function () {
         },
 
         log : function (text) {
-            output.innerHTML = text + "\n" + output.innerHTML
+            output.innerHTML = text + "\r" + output.innerHTML;
         },
 
         clear : function () {

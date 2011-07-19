@@ -5,27 +5,14 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>IE7 Drag and Drop</title>
 
-
-
         <link href="stylesheets/site.css" rel="stylesheet" type="text/css" />
 
-        <style type="text/css">
-            .item {
-                cursor: pointer;
-                position: relative;
-            }
-
-            *[draggable=true] {
-              cursor: move;
-            }
-
-        </style>
         <script src="javascripts/modernizr.custom.68656.js" type="text/javascript"></script>
         <script type="text/javascript" src="javascripts/EventUtil.js"></script>
         <script type="text/javascript" src="javascripts/SimpleLogger.js"></script>
     </head>
     <body>
-    
+  
         <div draggable="false" id="source1">
             <a draggable="true" href="#" data-value="bar" id="dragme1" class="item"></a>
         </div>
@@ -38,24 +25,20 @@
 
             if (Modernizr.draganddrop) {
               // Support Drag and drop
-
             } else {
-            
               // Fallback to a library solution.
             }
-            
-            // Ziel1
-
-            var target1 = document.getElementById('target1');
-            var effect = 'copy';
-            var format = 'Text';
+                 
+            var d1 = document.getElementById('dragme1'),
+                target1 = document.getElementById('target1'),
+                effect = 'copy',
+                format = 'Text';
 
             EventUtil.addHandler(target1, 'drop', function (e) {
+                sl.log('target1: drop');
 
-                if (e.stopPropagation) {
-                    e.stopPropagation();
-                }
-
+                EventUtil.preventDefault(e);
+                        
                 var currentTarget = EventUtil.getCurrentTarget(e);
                 currentTarget.innerHTML = e.dataTransfer.getData(format);
 
@@ -63,10 +46,9 @@
             });
 
             EventUtil.addHandler(target1, 'dragover', function (e) {
+                sl.log('target1: dragover');
 
-                if (e.preventDefault) {
-                    e.preventDefault();
-                }
+                EventUtil.preventDefault(e);
 
                 var currentTarget = EventUtil.getCurrentTarget(e);
 
@@ -77,30 +59,40 @@
             });
 
             EventUtil.addHandler(target1, 'dragleave', function (e) {
+                sl.log('target1: dragleave');
+
                 var currentTarget = EventUtil.getCurrentTarget(e);
                 currentTarget.className = '';
             });
 
             EventUtil.addHandler(target1, 'dragenter', function (e) {
+                sl.log('target1: dragenter');
 
                 e.dataTransfer.dropEffect = effect; // set as described on http://help.dottoro.com/ljffjemc.php
                 var data = e.dataTransfer.getData(format);
-
                 return false;
-
             });
 
-
-            var d1 = document.getElementById('dragme1');
-
             EventUtil.addHandler(d1, 'dragstart', function (e) {
-                var currentTarget = EventUtil.getCurrentTarget(e);
+                sl.log('item1: dragstart');
 
-
-                var data = currentTarget.getAttribute('data-value');
+                var currentTarget = EventUtil.getCurrentTarget(e),
+                    data = currentTarget.getAttribute('data-value');
 
                 e.dataTransfer.setData(format, data);
                 e.dataTransfer.effectAllowed = effect;
+
+                return true;
+            });
+
+            EventUtil.addHandler(d1, 'drag', function (e) {
+                sl.log('item1: drag');
+
+                return true;
+            });
+
+            EventUtil.addHandler(d1, 'dragend', function (e) {
+                sl.log('item1: dragend');
 
                 return true;
             });
