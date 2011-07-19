@@ -25,12 +25,12 @@
         <script type="text/javascript" src="javascripts/SimpleLogger.js"></script>
     </head>
     <body>
-    http://www.useragentman.com/tests/dragAndDrop/02-dragObjectWithEvents.html
+    
         <div draggable="false" id="source1">
             <a draggable="true" href="#" data-value="bar" id="dragme1" class="item"></a>
         </div>
         <hr/>
-        <div dropzone="move s:text/html" id="target1">foo</div>
+        <div id="target1">foo</div>
 
         <script type="text/javascript">
             var sl = new SimpleLogger();
@@ -68,18 +68,21 @@
                     e.preventDefault();
                 }
 
-                this.className = 'draggingover';
+                var currentTarget = EventUtil.getCurrentTarget(e);
+
+                currentTarget.className = 'draggingover';
                 e.dataTransfer.dropEffect = effect;
 
                 return false;
             });
 
             EventUtil.addHandler(target1, 'dragleave', function (e) {
-                this.className = '';
+                var currentTarget = EventUtil.getCurrentTarget(e);
+                currentTarget.className = '';
             });
 
             EventUtil.addHandler(target1, 'dragenter', function (e) {
-                
+
                 e.dataTransfer.dropEffect = effect; // set as described on http://help.dottoro.com/ljffjemc.php
                 var data = e.dataTransfer.getData(format);
 
