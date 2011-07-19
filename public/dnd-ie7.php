@@ -35,9 +35,12 @@
                 format = 'Text';
 
             EventUtil.addHandler(target1, 'drop', function (e) {
-                sl.log('target1: drop');
 
                 EventUtil.preventDefault(e);
+
+                var mouse_position = EventUtil.getMousePosition(e);
+                
+                sl.log('target1: drop' + ' ' + 'x: ' + mouse_position.x + ', y: ' + mouse_position.y);
                         
                 var currentTarget = EventUtil.getCurrentTarget(e);
                 currentTarget.innerHTML = e.dataTransfer.getData(format);
