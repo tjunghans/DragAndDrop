@@ -14,7 +14,7 @@
     <body>
   
         <div draggable="false" id="source1">
-            <a draggable="true" href="#" data-value="bar" id="dragme1" class="item"></a>
+            <a draggable="true" href="#" data-value="dragme1" id="dragme1" class="item"></a>
         </div>
         <hr/>
         <div id="target1">foo</div>
@@ -43,7 +43,12 @@
                 sl.log('target1: drop' + ' ' + 'x: ' + mouse_position.x + ', y: ' + mouse_position.y);
                         
                 var currentTarget = EventUtil.getCurrentTarget(e);
-                currentTarget.innerHTML = e.dataTransfer.getData(format);
+                //currentTarget.innerHTML = e.dataTransfer.getData(format);
+                var item = document.getElementById(e.dataTransfer.getData(format));
+                item.style.position = 'absolute';
+                item.style.left = mouse_position.x + 'px';
+                item.style.top = mouse_position.y + 'px';
+                currentTarget.appendChild(item);
 
                 return false;
             });
@@ -72,7 +77,7 @@
                 sl.log('target1: dragenter');
 
                 e.dataTransfer.dropEffect = effect; // set as described on http://help.dottoro.com/ljffjemc.php
-                var data = e.dataTransfer.getData(format);
+                    var data = e.dataTransfer.getData(format);
                 return false;
             });
 

@@ -49,6 +49,7 @@
     border:  solid 2px darkblue;
     background-color: #add8e6;
     padding: 7px;
+    position: relative;
 }
 
 #target1.draggingover {
