@@ -45,9 +45,11 @@
                 var currentTarget = EventUtil.getCurrentTarget(e);
                 //currentTarget.innerHTML = e.dataTransfer.getData(format);
                 var item = document.getElementById(e.dataTransfer.getData(format));
-                item.style.position = 'absolute';
-                item.style.left = mouse_position.x + 'px';
-                item.style.top = mouse_position.y + 'px';
+
+                /*item.style.position = 'absolute';
+                item.style.left = (mouse_position.x - target1.offsetLeft) + 'px';
+                item.style.top = (mouse_position.y - target1.offsetTop) + 'px';*/
+
                 currentTarget.appendChild(item);
 
                 return false;
@@ -61,7 +63,7 @@
                 var currentTarget = EventUtil.getCurrentTarget(e);
 
                 currentTarget.className = 'draggingover';
-                e.dataTransfer.dropEffect = effect;
+                e.dataTransfer.dropEffect = effect; // set as described on http://help.dottoro.com/ljffjemc.php
 
                 return false;
             });
@@ -76,8 +78,7 @@
             EventUtil.addHandler(target1, 'dragenter', function (e) {
                 sl.log('target1: dragenter');
 
-                e.dataTransfer.dropEffect = effect; // set as described on http://help.dottoro.com/ljffjemc.php
-                    var data = e.dataTransfer.getData(format);
+                var data = e.dataTransfer.getData(format);
                 return false;
             });
 
