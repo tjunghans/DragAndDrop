@@ -1,0 +1,60 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+*[draggable=true] {
+  -moz-user-select:none;
+  -khtml-user-drag: element;
+  -webkit-user-drag: element;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  cursor: move;
+}
+
+.page {
+    border: 1px solid #ccc;
+    margin: 0 auto;
+    overflow: hidden;
+    width: 800px;
+}
+
+.col {
+    background-color: #87cefa;
+    height: 380px;
+    margin: 14px;
+    width: 300px;
+}
+
+.col-source {
+    float: left;
+}
+
+.col-target {
+    float: right;
+}
+
+.ul-items {
+    list-style: none;
+    margin: -7px 0;
+    padding: 0;
+}
+
+
+
+.ul-items li {
+    margin-top: 7px;
+}
+
+.li-dragover {
+    border: dashed 2px #0000ff
+}
+
+.a-draggable {
+    background: orange;
+    display: block;
+    padding: 7px;
+}
+
+.dragging {
+   opacity: 0.3;
+}
