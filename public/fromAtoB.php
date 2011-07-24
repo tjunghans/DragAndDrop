@@ -10,28 +10,23 @@
     </head>
     <body>
         <div class="page">
-            <div class="col col-source">
+            <div class="col col-source" id="Source">
                 <h2>Quelle</h2>
-                <ul class="ul-items">
-                    <li><a class="a-draggable" href="#" draggable="true">Milch</a></li>
-                    <li><a class="a-draggable" href="#" draggable="true">Brot</a></li>
-                    <li><a class="a-draggable" href="#" draggable="true">Eier</a></li>
-                    <li><a class="a-draggable" href="#" draggable="true">O-Saft</a></li>
-                    <li><a class="a-draggable" href="#" draggable="true">Marmelade</a></li>
-                    <li><a class="a-draggable" href="#" draggable="true">Fleisch</a></li>
-                    <li><a class="a-draggable" href="#" draggable="true">Käse</a></li>
-                </ul>
-            </div>
-            <div class="col col-target">
-                <h2>Ziel</h2>
-                <ul class="ul-items">
-                    <li class="li-dragover"><a class="a-draggable" href="#" draggable="true">Milch</a></li>
+                <ul class="ul-items" id="SourceList">
+                    <li><a class="a-draggable" href="#" draggable="true" data-value="milk">Milch</a></li>
                     <li><a class="a-draggable" href="#" draggable="true" data-value="bread">Brot</a></li>
                     <li><a class="a-draggable" href="#" draggable="true" data-value="eggs">Eier</a></li>
                     <li><a class="a-draggable" href="#" draggable="true" data-value="orange juice">O-Saft</a></li>
                     <li><a class="a-draggable" href="#" draggable="true" data-value="jam">Marmelade</a></li>
                     <li><a class="a-draggable" href="#" draggable="true" data-value="meat">Fleisch</a></li>
-                    <li><a class="a-draggable" href="#" draggable="true" data-value="cheese">Käse</a></li>
+                    <li><a class="a-draggable" href="#" draggable="true" data-value="cheese ">Käse</a></li>
+                </ul>
+            </div>
+            <div class="col col-target" id="Target">
+                <h2>Ziel</h2>
+                <ul class="ul-items" id="TargetList">
+                    <li class="li-dragover"><a class="a-draggable" href="#" draggable="true">Milch</a></li>
+          
                 </ul>
             </div>
         </div>
@@ -39,10 +34,16 @@
         <script type="text/javascript" src="javascripts/EventUtil.js"></script>
         <script type="text/javascript" src="javascripts/SelectorUtil.js"></script>
         <script type="text/javascript">
+        (function () {
+            // The name of the data field has to be either "Text" or "Url"
             var format = 'Text';
+            
             var effect = 'copy';
             var draggable_items = SelectorUtil.getElementsByClass('a-draggable', null,'a');
+            var target_container = document.getElementById('Target');
+            var current_draggable_item_id = 'CurrentDraggable';
 
+            // Draggable Items
             for (var i = 0, len = draggable_items.length; i < len; i++) {
                 EventUtil.addHandler(draggable_items[i], 'dragstart', function (e) {
                     var currentTarget = EventUtil.getCurrentTarget(e),
@@ -51,6 +52,9 @@
                     e.dataTransfer.setData(format, data);
                     e.dataTransfer.effectAllowed = effect;
 
+                    // Definiere temporäre ID zur späteren Identifikation
+                    currentTarget.setAttribute('id', current_draggable_item_id);
+
                     SelectorUtil.addClass(currentTarget, 'dragging');
 
                     return true;
@@ -58,12 +62,74 @@
 
                 EventUtil.addHandler(draggable_items[i], 'dragend', function (e) {
                     var currentTarget = EventUtil.getCurrentTarget(e);
+                    
                     SelectorUtil.removeClass(currentTarget, 'dragging');
+
+                    // Temporäre ID entfernen
+                    currentTarget.setAttribute('id', null);
                     return true;
                 });
             }
 
+            // Target
+            EventUtil.addHandler(target_container, 'dragenter', function (e) {
+                var currentTarget = EventUtil.getCurrentTarget(e);
 
+                // Chrome and Safari do not recognize data (=undefined)
+                var data = e.dataTransfer.getData(format);
+
+                SelectorUtil.addClass(currentTarget, 'draggable-entered');
+
+                return false;
+            });
+
+            EventUtil.addHandler(target_container, 'dragleave', function (e) {
+                var currentTarget = EventUtil.getCurrentTarget(e);
+
+                SelectorUtil.removeClass(currentTarget, 'draggable-entered');
+
+                return false;
+            });
+
+            EventUtil.addHandler(target_container, 'dragover', function (e) {
+                EventUtil.preventDefault(e);
+
+                var currentTarget = EventUtil.getCurrentTarget(e);
+
+                SelectorUtil.addClass(currentTarget, 'draggingover');
+                
+                e.dataTransfer.dropEffect = effect; // set as described on http://help.dottoro.com/ljffjemc.php
+
+                return false;
+            });
+
+            EventUtil.addHandler(target_container, 'drop', function (e) {
+
+                EventUtil.preventDefault(e);
+
+                var mouse_position = EventUtil.getMousePosition(e);
+
+                var currentTarget = EventUtil.getCurrentTarget(e);
+                
+                var data = e.dataTransfer.getData(format);
+
+                var draggable_item = document.getElementById(current_draggable_item_id);
+
+                /*item.style.position = 'absolute';
+                item.style.left = (mouse_position.x - target1.offsetLeft) + 'px';
+                item.style.top = (mouse_position.y - target1.offsetTop) + 'px';*/
+
+                console.log('x', draggable_item);
+
+                //currentTarget.appendChild(item);
+                
+
+                return false;
+            });
+
+
+
+        }());
 
         </script>
     </body>

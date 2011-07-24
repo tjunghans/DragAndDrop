@@ -79,6 +79,7 @@
                 sl.log('target1: dragenter');
 
                 var data = e.dataTransfer.getData(format);
+                
                 return false;
             });
 

@@ -58,3 +58,7 @@ body {
 .dragging {
    opacity: 0.3;
 }
+
+.draggable-entered {
+    background-color: #ffff00;
+}
