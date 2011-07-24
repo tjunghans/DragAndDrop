@@ -83,6 +83,7 @@ function print_link($url) {
             $acc_link[] = 'https://github.com/guillaumebort/jquery-ndd#readme';
             $acc_link[] = 'http://www.sitepen.com/blog/2008/06/10/dojo-drag-and-drop-1/';
             $acc_link[] = 'http://www.dustindiaz.com/add-and-remove-html-elements-dynamically-with-javascript/';
+            $acc_link[] = 'http://stackoverflow.com/questions/5098482/using-aria-role-article-and-or-listitem';
             foreach($acc_link as $link) {
                 echo '<li>';
                 print_link($link);

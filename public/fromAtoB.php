@@ -11,19 +11,19 @@
     <body>
         <div class="page">
             <div class="col col-source" id="Source">
-                <h2>Quelle</h2>
-                <ul class="ul-items" id="SourceList">
-                    <li><a class="a-draggable" href="#" draggable="true" data-value="milk">Milch</a></li>
-                    <li><a class="a-draggable" href="#" draggable="true" data-value="bread">Brot</a></li>
-                    <li><a class="a-draggable" href="#" draggable="true" data-value="eggs">Eier</a></li>
-                    <li><a class="a-draggable" href="#" draggable="true" data-value="orange juice">O-Saft</a></li>
-                    <li><a class="a-draggable" href="#" draggable="true" data-value="jam">Marmelade</a></li>
-                    <li><a class="a-draggable" href="#" draggable="true" data-value="meat">Fleisch</a></li>
-                    <li><a class="a-draggable" href="#" draggable="true" data-value="cheese ">Käse</a></li>
+                <h2>Produkte</h2>
+                <ul class="ul-items" id="SourceList" role="list">
+                    <li><a role="listitem" class="a-draggable" href="#" draggable="true" data-value="milk">Milch</a></li>
+                    <li><a role="listitem" class="a-draggable" href="#" draggable="true" data-value="bread">Brot</a></li>
+                    <li><a role="listitem" class="a-draggable" href="#" draggable="true" data-value="eggs">Eier</a></li>
+                    <li><a role="listitem" class="a-draggable" href="#" draggable="true" data-value="orange juice">O-Saft</a></li>
+                    <li><a role="listitem" class="a-draggable" href="#" draggable="true" data-value="jam">Marmelade</a></li>
+                    <li><a role="listitem" class="a-draggable" href="#" draggable="true" data-value="meat">Fleisch</a></li>
+                    <li><a role="listitem" class="a-draggable" href="#" draggable="true" data-value="cheese ">Käse</a></li>
                 </ul>
             </div>
             <div class="col col-target" id="Target">
-                <h2>Ziel</h2>
+                <h2>Einkaufsliste</h2>
                 <ul class="ul-items" id="TargetList">
                   
           
@@ -61,9 +61,8 @@
 
                     var list_item = document.createElement('li');
                     list_item.setAttribute('id', placeholder_id);
-                
+                   
                   
-
                     target_list.appendChild(list_item);
 
                     return true;
@@ -150,8 +149,6 @@
                 return false;
             });
 
-
-//li-dragover
         }());
 
         </script>
