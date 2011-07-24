@@ -13,18 +13,18 @@
             <div class="col col-source" id="Source">
                 <h2>Produkte</h2>
                 <ul class="ul-items" id="SourceList" role="list">
-                    <li><a role="listitem" class="a-draggable" href="#" draggable="true" data-value="milk">Milch</a></li>
-                    <li><a role="listitem" class="a-draggable" href="#" draggable="true" data-value="bread">Brot</a></li>
-                    <li><a role="listitem" class="a-draggable" href="#" draggable="true" data-value="eggs">Eier</a></li>
-                    <li><a role="listitem" class="a-draggable" href="#" draggable="true" data-value="orange juice">O-Saft</a></li>
-                    <li><a role="listitem" class="a-draggable" href="#" draggable="true" data-value="jam">Marmelade</a></li>
-                    <li><a role="listitem" class="a-draggable" href="#" draggable="true" data-value="meat">Fleisch</a></li>
-                    <li><a role="listitem" class="a-draggable" href="#" draggable="true" data-value="cheese ">Käse</a></li>
+                    <li><a role="listitem" aria-grabbed="false" class="a-draggable" href="#" draggable="true" data-value="milk">Milch</a></li>
+                    <li><a role="listitem" aria-grabbed="false" class="a-draggable" href="#" draggable="true" data-value="bread">Brot</a></li>
+                    <li><a role="listitem" aria-grabbed="false" class="a-draggable" href="#" draggable="true" data-value="eggs">Eier</a></li>
+                    <li><a role="listitem" aria-grabbed="false" class="a-draggable" href="#" draggable="true" data-value="orange juice">O-Saft</a></li>
+                    <li><a role="listitem" aria-grabbed="false" class="a-draggable" href="#" draggable="true" data-value="jam">Marmelade</a></li>
+                    <li><a role="listitem" aria-grabbed="false" class="a-draggable" href="#" draggable="true" data-value="meat">Fleisch</a></li>
+                    <li><a role="listitem" aria-grabbed="false" class="a-draggable" href="#" draggable="true" data-value="cheese ">Käse</a></li>
                 </ul>
             </div>
             <div class="col col-target" id="Target">
                 <h2>Einkaufsliste</h2>
-                <ul class="ul-items" id="TargetList">
+                <ul class="ul-items" id="TargetList" role="list" aria-dropeffect="copy">
                   
           
                 </ul>
@@ -38,7 +38,7 @@
             // The name of the data field has to be either "Text" or "Url"
             var format = 'Text';
             
-            var effect = 'copy';
+            var effect = 'move';
             var draggable_items = SelectorUtil.getElementsByClass('a-draggable', null,'a');
             var target_container = document.getElementById('Target');
             var target_list = document.getElementById('TargetList');
