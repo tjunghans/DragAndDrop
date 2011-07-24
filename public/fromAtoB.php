@@ -24,7 +24,7 @@
             </div>
             <div class="col col-target" id="Target">
                 <h2>Einkaufsliste</h2>
-                <ul class="ul-items" id="TargetList" role="list" aria-dropeffect="copy">
+                <ul class="ul-items" id="TargetList" role="list" aria-dropeffect="move">
                   
           
                 </ul>
@@ -58,9 +58,11 @@
                     currentTarget.setAttribute('id', current_draggable_item_id);
 
                     SelectorUtil.addClass(currentTarget, 'dragging');
+                    currentTarget.setAttribute('aria-grabbed', 'true');
 
                     var list_item = document.createElement('li');
                     list_item.setAttribute('id', placeholder_id);
+
                    
                   
                     target_list.appendChild(list_item);
@@ -72,6 +74,7 @@
                     var currentTarget = EventUtil.getCurrentTarget(e);
                     
                     SelectorUtil.removeClass(currentTarget, 'dragging');
+                    currentTarget.setAttribute('aria-grabbed', 'false');
 
                     // Temporäre ID entfernen
                     currentTarget.removeAttribute('id');
