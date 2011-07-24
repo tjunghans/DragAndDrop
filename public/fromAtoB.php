@@ -25,7 +25,7 @@
             <div class="col col-target" id="Target">
                 <h2>Ziel</h2>
                 <ul class="ul-items" id="TargetList">
-                    <li class="li-dragover"><a class="a-draggable" href="#" draggable="true">Milch</a></li>
+                  
           
                 </ul>
             </div>
@@ -41,6 +41,7 @@
             var effect = 'copy';
             var draggable_items = SelectorUtil.getElementsByClass('a-draggable', null,'a');
             var target_container = document.getElementById('Target');
+            var target_list = document.getElementById('TargetList');
             var current_draggable_item_id = 'CurrentDraggable';
 
             // Draggable Items
@@ -122,7 +123,9 @@
                 console.log('x', draggable_item);
 
                 //currentTarget.appendChild(item);
-                
+                var list_item = document.createElement('li');
+                list_item.appendChild(draggable_item);
+                target_list.appendChild(list_item);
 
                 return false;
             });
