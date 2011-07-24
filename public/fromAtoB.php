@@ -134,16 +134,9 @@
 
                 SelectorUtil.removeClass(currentTarget, 'draggable-entered');
 
-                /*item.style.position = 'absolute';
-                item.style.left = (mouse_position.x - target1.offsetLeft) + 'px';
-                item.style.top = (mouse_position.y - target1.offsetTop) + 'px';*/
-
-                //currentTarget.appendChild(item);
-
                 // Platzhalter Referenz
                 var place_holder = document.getElementById(placeholder_id);
                 var draggable_item_container = draggable_item.parentNode;
-
 
                 // Link hinzufügen
                 place_holder.appendChild(draggable_item);
