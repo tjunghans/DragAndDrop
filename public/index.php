@@ -76,12 +76,13 @@ function print_link($url) {
             }
             ?>
         </ul>
-         <h3>Plugins and Frameworks</h3>
+         <h3>Plugins, Frameworks, useful examples</h3>
         <ul>
             <?php
             $acc_link = array();
             $acc_link[] = 'https://github.com/guillaumebort/jquery-ndd#readme';
             $acc_link[] = 'http://www.sitepen.com/blog/2008/06/10/dojo-drag-and-drop-1/';
+            $acc_link[] = 'http://www.dustindiaz.com/add-and-remove-html-elements-dynamically-with-javascript/';
             foreach($acc_link as $link) {
                 echo '<li>';
                 print_link($link);
@@ -90,6 +91,7 @@ function print_link($url) {
             ?>
         </ul>
 
+        
 
     </body>
 </html>

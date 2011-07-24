@@ -43,6 +43,7 @@
             var target_container = document.getElementById('Target');
             var target_list = document.getElementById('TargetList');
             var current_draggable_item_id = 'CurrentDraggable';
+            var placeholder_id = 'ItemPlaceholder';
 
             // Draggable Items
             for (var i = 0, len = draggable_items.length; i < len; i++) {
@@ -58,6 +59,13 @@
 
                     SelectorUtil.addClass(currentTarget, 'dragging');
 
+                    var list_item = document.createElement('li');
+                    list_item.setAttribute('id', placeholder_id);
+                
+                  
+
+                    target_list.appendChild(list_item);
+
                     return true;
                 });
 
@@ -67,7 +75,14 @@
                     SelectorUtil.removeClass(currentTarget, 'dragging');
 
                     // Temporäre ID entfernen
-                    currentTarget.setAttribute('id', null);
+                    currentTarget.removeAttribute('id');
+
+                    var place_holder = document.getElementById(placeholder_id);
+                    if (place_holder) {
+                        place_holder.parentNode.removeChild(place_holder);
+                    }
+
+
                     return true;
                 });
             }
@@ -99,6 +114,7 @@
 
                 SelectorUtil.addClass(currentTarget, 'draggingover');
                 
+                
                 e.dataTransfer.dropEffect = effect; // set as described on http://help.dottoro.com/ljffjemc.php
 
                 return false;
@@ -116,22 +132,33 @@
 
                 var draggable_item = document.getElementById(current_draggable_item_id);
 
+                SelectorUtil.removeClass(currentTarget, 'draggable-entered');
+
                 /*item.style.position = 'absolute';
                 item.style.left = (mouse_position.x - target1.offsetLeft) + 'px';
                 item.style.top = (mouse_position.y - target1.offsetTop) + 'px';*/
 
-                console.log('x', draggable_item);
-
                 //currentTarget.appendChild(item);
-                var list_item = document.createElement('li');
-                list_item.appendChild(draggable_item);
-                target_list.appendChild(list_item);
+
+                // Platzhalter Referenz
+                var place_holder = document.getElementById(placeholder_id);
+                var draggable_item_container = draggable_item.parentNode;
+
+
+                // Link hinzufügen
+                place_holder.appendChild(draggable_item);
+
+                // Platzhalter ID entfernen
+                place_holder.removeAttribute('id');
+
+                draggable_item_container.parentNode.removeChild(draggable_item_container);
+
 
                 return false;
             });
 
 
-
+//li-dragover
         }());
 
         </script>
