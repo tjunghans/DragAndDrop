@@ -21,6 +21,8 @@ function print_link($url) {
             <li><a href="dnd-ie8.php">IE8</a></li>
             <li><a href="dnd-ie7.php">IE7</a></li>
             <li><a href="fromAtoB.php">Example 1: From A to B</a></li>
+            <li><a href="article.php">Article</a></li>
+            <li><a href="article-beispiel.php">Article Example</a></li>
         </ul>
         <hr/>
         <h2>Referenzen</h2>
@@ -39,6 +41,10 @@ function print_link($url) {
             $acc_link[] = 'http://html5laboratory.com/drag-and-drop.php';
             $acc_link[] = 'http://nettutsplus.s3.amazonaws.com/64_html5dragdrop/demo/index.html';
             $acc_link[] = 'http://caniuse.com/';
+            $acc_link[] = 'http://decafbad.com/blog/2009/07/15/html5-drag-and-drop';
+            $acc_link[] = 'http://www.sitepen.com/blog/2008/07/10/touching-and-gesturing-on-the-iphone/';
+            $acc_link[] = 'http://html5test.com/';
+
             foreach($acc_link as $link) {
                 echo '<li>';
                 print_link($link);

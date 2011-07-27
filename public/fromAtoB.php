@@ -11,15 +11,16 @@
     <body>
         <div class="page">
             <div class="col col-source" id="Source">
-                <h2>Produkte</h2>
+                <h2 tabindex="0" id="Produkte">Produkte</h2>
                 <ul class="ul-items" id="SourceList" role="list">
-                    <li><a role="listitem" aria-grabbed="false" class="a-draggable" href="#" draggable="true" data-value="milk">Milch</a></li>
-                    <li><a role="listitem" aria-grabbed="false" class="a-draggable" href="#" draggable="true" data-value="bread">Brot</a></li>
-                    <li><a role="listitem" aria-grabbed="false" class="a-draggable" href="#" draggable="true" data-value="eggs">Eier</a></li>
-                    <li><a role="listitem" aria-grabbed="false" class="a-draggable" href="#" draggable="true" data-value="orange juice">O-Saft</a></li>
-                    <li><a role="listitem" aria-grabbed="false" class="a-draggable" href="#" draggable="true" data-value="jam">Marmelade</a></li>
-                    <li><a role="listitem" aria-grabbed="false" class="a-draggable" href="#" draggable="true" data-value="meat">Fleisch</a></li>
-                    <li><a role="listitem" aria-grabbed="false" class="a-draggable" href="#" draggable="true" data-value="cheese ">Käse</a></li>
+                    <li><a role="listitem" class="a-draggable" href="#" data-value="milk">Milch</a></li>
+                    <li><a role="listitem" class="a-draggable" href="#" data-value="bread">Brot</a></li>
+                    <li><a role="listitem" class="a-draggable" href="#" data-value="eggs">Eier</a></li>
+                    <li><a role="listitem" class="a-draggable" href="#" data-value="orange juice">O-Saft</a></li>
+                    <li><a role="listitem" class="a-draggable" href="#" data-value="jam">Marmelade</a></li>
+                    <li><a role="listitem" class="a-draggable" href="#" data-value="meat">Fleisch</a></li>
+                    <li><a role="listitem" class="a-draggable" href="#" data-value="cheese">Käse</a></li>
+                
                 </ul>
             </div>
             <div class="col col-target" id="Target">
@@ -39,14 +40,47 @@
             var format = 'Text';
             
             var effect = 'move';
-            var draggable_items = SelectorUtil.getElementsByClass('a-draggable', null,'a');
+            var draggable_items = SelectorUtil.getElementsByClass('a-draggable', null, 'a');
             var target_container = document.getElementById('Target');
             var target_list = document.getElementById('TargetList');
             var current_draggable_item_id = 'CurrentDraggable';
             var placeholder_id = 'ItemPlaceholder';
+            var current_item = 0;
 
-            // Draggable Items
+            EventUtil.addHandler(draggable_items[0], 'keydown', function (e) {
+                EventUtil.preventDefault(e);
+                current_item += 1;
+
+                // keyCode 9 steht für Tab
+                if (e.keyCode === 9) {
+                    if (current_item === draggable_items.length) {
+                        draggable_items[0].focus();
+                        current_item = 0;
+                    } else {
+                        draggable_items[current_item].focus();
+                    }
+                   
+                    return false;
+                }
+            });
+
+            // Draggable Items vorbereiten
             for (var i = 0, len = draggable_items.length; i < len; i++) {
+
+                // Mit Tab navigierbar machen
+                if (i === 0) {
+                    draggable_items[i].tabIndex = 0;
+                } else {
+                    draggable_items[i].tabIndex = -1;
+                }
+
+
+
+                
+                draggable_items[i].setAttribute('draggable', 'true');
+                draggable_items[i].setAttribute('aria-grabbed', 'false');
+
+                // Eventhandler "dragstart" setzen
                 EventUtil.addHandler(draggable_items[i], 'dragstart', function (e) {
                     var currentTarget = EventUtil.getCurrentTarget(e),
                         data = currentTarget.getAttribute('data-value');
@@ -63,13 +97,12 @@
                     var list_item = document.createElement('li');
                     list_item.setAttribute('id', placeholder_id);
 
-                   
-                  
                     target_list.appendChild(list_item);
 
                     return true;
                 });
 
+                // Eventhandler "dragend" setzen
                 EventUtil.addHandler(draggable_items[i], 'dragend', function (e) {
                     var currentTarget = EventUtil.getCurrentTarget(e);
                     
@@ -115,8 +148,7 @@
                 var currentTarget = EventUtil.getCurrentTarget(e);
 
                 SelectorUtil.addClass(currentTarget, 'draggingover');
-                
-                
+                      
                 e.dataTransfer.dropEffect = effect; // set as described on http://help.dottoro.com/ljffjemc.php
 
                 return false;

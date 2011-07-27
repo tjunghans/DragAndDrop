@@ -53,6 +53,7 @@ h2 {
 }
 
 #ItemPlaceholder {
+    background-color: #fff;
     border: dashed 3px #bfbb11
 }
 
@@ -62,6 +63,13 @@ h2 {
     display: block;
     padding: 7px;
     text-decoration: none;
+
+}
+
+.a-draggable:hover,
+.a-draggable:focus,
+.a-draggable:active {
+    background-color: #c93c00;
 }
 
 .dragging {

@@ -52,6 +52,8 @@
 
                 currentTarget.appendChild(item);
 
+                console.log(e.dataTransfer.getData(format));
+
                 return false;
             });
 
@@ -64,6 +66,8 @@
 
                 currentTarget.className = 'draggingover';
                 e.dataTransfer.dropEffect = effect; // set as described on http://help.dottoro.com/ljffjemc.php
+
+                console.log(e.dataTransfer.getData(format));
 
                 return false;
             });
@@ -79,7 +83,8 @@
                 sl.log('target1: dragenter');
 
                 var data = e.dataTransfer.getData(format);
-                
+
+                alert(data);
                 return false;
             });
 
