@@ -22,7 +22,7 @@ function print_link($url) {
             <li><a href="dnd-ie7.php">IE7</a></li>
             <li><a href="fromAtoB.php">Example 1: From A to B</a></li>
             <li><a href="article.php">Article</a></li>
-            <li><a href="article-beispiel.php">Article Example</a></li>
+            <li><a href="article-beispiel.html">Article Example</a></li>
         </ul>
         <hr/>
         <h2>Referenzen</h2>
